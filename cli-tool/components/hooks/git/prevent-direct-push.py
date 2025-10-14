@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
-import sys
 import subprocess
+import sys
 
 try:
     input_data = json.load(sys.stdin)
@@ -20,11 +20,9 @@ if tool_name != "Bash" or "git push" not in command:
 # Get current branch
 try:
     current_branch = subprocess.check_output(
-        ["git", "branch", "--show-current"],
-        stderr=subprocess.DEVNULL,
-        text=True
+        ["git", "branch", "--show-current"], stderr=subprocess.DEVNULL, text=True
     ).strip()
-except:
+except Exception:
     current_branch = ""
 
 # Check if pushing to main or develop
@@ -33,14 +31,18 @@ is_force_push = "--force" in push_cmd or "-f" in push_cmd
 
 # Check if command or current branch targets protected branches
 targets_protected = (
-    "origin main" in push_cmd or
-    "origin develop" in push_cmd or
-    current_branch in ["main", "develop"]
+    "origin main" in push_cmd
+    or "origin develop" in push_cmd
+    or current_branch in ["main", "develop"]
 )
 
 # Block direct push to main/develop (unless force push which is already dangerous)
 if targets_protected and not is_force_push:
-    if current_branch in ["main", "develop"] or "origin main" in push_cmd or "origin develop" in push_cmd:
+    if (
+        current_branch in ["main", "develop"]
+        or "origin main" in push_cmd
+        or "origin develop" in push_cmd
+    ):
         reason = f"""❌ Direct push to main/develop is not allowed!
 
 Protected branches:
@@ -76,7 +78,7 @@ Current branch: {current_branch}
             "hookSpecificOutput": {
                 "hookEventName": "PreToolUse",
                 "permissionDecision": "deny",
-                "permissionDecisionReason": reason
+                "permissionDecisionReason": reason,
             }
         }
         print(json.dumps(output))

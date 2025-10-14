@@ -205,6 +205,24 @@
       "description": ""
     },
     {
+      "name": "neon-auth-specialist",
+      "path": "database/neon-auth-specialist",
+      "category": "database",
+      "description": ""
+    },
+    {
+      "name": "neon-database-architect",
+      "path": "database/neon-database-architect",
+      "category": "database",
+      "description": ""
+    },
+    {
+      "name": "neon-expert",
+      "path": "database/neon-expert",
+      "category": "database",
+      "description": ""
+    },
+    {
       "name": "nosql-specialist",
       "path": "database/nosql-specialist",
       "category": "database",
@@ -391,6 +409,12 @@
       "description": ""
     },
     {
+      "name": "unused-code-cleaner",
+      "path": "development-tools/unused-code-cleaner",
+      "category": "development-tools",
+      "description": ""
+    },
+    {
       "name": "cloud-architect",
       "path": "devops-infrastructure/cloud-architect",
       "category": "devops-infrastructure",
@@ -556,6 +580,12 @@
       "name": "unreal-engine-developer",
       "path": "game-development/unreal-engine-developer",
       "category": "game-development",
+      "description": ""
+    },
+    {
+      "name": "git-flow-manager",
+      "path": "git/git-flow-manager",
+      "category": "git",
       "description": ""
     },
     {
@@ -938,5 +968,5 @@
     }
   ],
   "version": "1.0.0",
-  "total": 156
+  "total": 161
 }
