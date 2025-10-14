@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
-import sys
 import re
+import sys
 
 try:
     input_data = json.load(sys.stdin)
@@ -18,7 +18,7 @@ if tool_name != "Bash" or "git checkout -b" not in command:
     sys.exit(0)
 
 # Extract branch name
-match = re.search(r'git checkout -b\s+([^\s]+)', command)
+match = re.search(r"git checkout -b\s+([^\s]+)", command)
 if not match:
     sys.exit(0)
 
@@ -29,7 +29,7 @@ if branch_name in ["main", "develop"]:
     sys.exit(0)
 
 # Validate Git Flow naming convention
-if not re.match(r'^(feature|release|hotfix)/', branch_name):
+if not re.match(r"^(feature|release|hotfix)/", branch_name):
     reason = f"""❌ Invalid Git Flow branch name: {branch_name}
 
 Git Flow branches must follow these patterns:
@@ -56,7 +56,7 @@ Invalid:
         "hookSpecificOutput": {
             "hookEventName": "PreToolUse",
             "permissionDecision": "deny",
-            "permissionDecisionReason": reason
+            "permissionDecisionReason": reason,
         }
     }
     print(json.dumps(output))
@@ -64,7 +64,7 @@ Invalid:
 
 # Validate release version format
 if branch_name.startswith("release/"):
-    if not re.match(r'^release/v\d+\.\d+\.\d+(-[a-zA-Z0-9.]+)?$', branch_name):
+    if not re.match(r"^release/v\d+\.\d+\.\d+(-[a-zA-Z0-9.]+)?$", branch_name):
         reason = f"""❌ Invalid release version: {branch_name}
 
 Release branches must follow semantic versioning:
@@ -86,7 +86,7 @@ Invalid:
             "hookSpecificOutput": {
                 "hookEventName": "PreToolUse",
                 "permissionDecision": "deny",
-                "permissionDecisionReason": reason
+                "permissionDecisionReason": reason,
             }
         }
         print(json.dumps(output))

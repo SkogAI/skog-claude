@@ -35,7 +35,11 @@
       "Read(/Users/danipower/.claude/local/node_modules/@anthropic-ai/claude-code/**)",
       "Read(/Users/danipower/.claude/local/node_modules/@anthropic-ai/claude-code/**)",
       "WebSearch",
-      "WebFetch(domain:neon.com)"
+      "WebFetch(domain:neon.com)",
+      "Read(//Users/danipower/.claude/**)"
+      "Bash(.venv/bin/flake8:*)",
+      "Bash(.venv/bin/black:*)",
+      "Bash(.venv/bin/autoflake:*)"
     ],
     "deny": []
   },

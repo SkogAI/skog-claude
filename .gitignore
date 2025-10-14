@@ -47,3 +47,4 @@ coverage
 
 # Deployment
 .vercel
+.claude/data/sessions
