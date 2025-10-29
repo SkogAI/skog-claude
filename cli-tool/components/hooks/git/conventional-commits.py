@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
-import sys
 import re
+import sys
 
 try:
     input_data = json.load(sys.stdin)
@@ -22,7 +22,11 @@ if tool_name != "Bash" or "git commit" not in command:
 match = re.search(r'git commit.*?-m\s+["\']([^"\']+)["\']', command)
 if not match:
     # Also try heredoc format: -m "$(cat <<'EOF' ... EOF)"
-    heredoc_match = re.search(r'git commit.*?-m\s+"?\$\(cat\s+<<["\']?EOF["\']?\s*\n(.+?)\nEOF', command, re.DOTALL)
+    heredoc_match = re.search(
+        r'git commit.*?-m\s+"?\$\(cat\s+<<["\']?EOF["\']?\s*\n(.+?)\nEOF',
+        command,
+        re.DOTALL,
+    )
     if heredoc_match:
         commit_msg = heredoc_match.group(1).strip()
     else:
@@ -33,7 +37,9 @@ else:
 # Check if message follows Conventional Commits format
 # Format: type(scope)?: description
 # Types: feat, fix, docs, style, refactor, perf, test, chore, ci, build, revert
-conventional_pattern = r'^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\(.+\))?:\s.+'
+conventional_pattern = (
+    r"^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\(.+\))?:\s.+"
+)
 
 if not re.match(conventional_pattern, commit_msg):
     reason = f"""❌ Invalid commit message format
@@ -74,7 +80,7 @@ Invalid:
         "hookSpecificOutput": {
             "hookEventName": "PreToolUse",
             "permissionDecision": "deny",
-            "permissionDecisionReason": reason
+            "permissionDecisionReason": reason,
         }
     }
     print(json.dumps(output))
