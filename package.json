@@ -8,7 +8,6 @@
     "cct": "cli-tool/bin/create-claude-config.js"
   },
   "scripts": {
-    "starter": "vercel dev",
     "build": "echo 'Build complete'",
     "start": "vercel dev",
     "test": "echo 'No tests specified'",

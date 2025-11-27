@@ -48,3 +48,4 @@ coverage
 # Deployment
 .vercel
 .claude/data/sessions
+.aider.chat.history.md
